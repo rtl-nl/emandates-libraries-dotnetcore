@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace eMandates.Merchant.Library.XML
 {
-    internal class XmlProcessor : IXmlProcessor
+    public class XmlProcessor : IXmlProcessor
     {
         private readonly ILogger logger;
         private readonly ICertificateLoader certificateLoader;

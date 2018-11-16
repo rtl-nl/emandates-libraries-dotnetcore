@@ -19,4 +19,19 @@
     <PackageReference Include="System.Security.Cryptography.Xml" Version="4.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="XML\pain.009.001.04.xsd" />
+    <EmbeddedResource Include="XML\pain.009.001.04.xsd" />
+    <None Remove="XML\pain.010.001.04.xsd" />
+    <EmbeddedResource Include="XML\pain.010.001.04.xsd" />
+    <None Remove="XML\pain.011.001.04.xsd" />
+    <EmbeddedResource Include="XML\pain.011.001.04.xsd" />
+    <None Remove="XML\pain.012.001.04.xsd" />
+    <EmbeddedResource Include="XML\pain.012.001.04.xsd" />
+    <None Remove="XML\xmldsig-core-schema.xsd" />
+    <EmbeddedResource Include="XML\xmldsig-core-schema.xsd" />
+    <None Remove="XML\idx.merchant-acquirer.1.0.xsd" />
+    <EmbeddedResource Include="XML\idx.merchant-acquirer.1.0.xsd" />
+  </ItemGroup>
+
 </Project>

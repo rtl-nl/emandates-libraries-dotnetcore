@@ -10,7 +10,7 @@ namespace eMandates.Merchant.Library.Logging
     /// <summary>
     /// The default logger used by the library
     /// </summary>
-    internal class XmlLogger : IXmlLogger
+    public class XmlLogger : IXmlLogger
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<XmlLogger> _logger;

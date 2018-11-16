@@ -1,8 +1,11 @@
 ﻿using eMandates.Merchant.Library;
 using eMandates.Merchant.Library.Configuration;
+using eMandates.Merchant.Library.Logging;
+using eMandates.Merchant.Library.XML;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace eMandates.Merchant.Website
@@ -22,11 +25,15 @@ namespace eMandates.Merchant.Website
 
             services
                 .AddOptions()
-                .Configure<Configuration>(_configuration);
+                .Configure<Configuration>(_configuration.GetSection("eMandates"));
 
             services
-                .AddSingleton<CoreCommunicator>()
-                .AddSingleton<B2BCommunicator>();
+                .AddSingleton<eMandates.Merchant.Library.Configuration.IConfiguration>(sp => sp.GetRequiredService<IOptions<Configuration>>().Value)
+                .AddSingleton<ICertificateLoader, CertificateStoreLoader>()
+                .AddSingleton<IXmlLogger, XmlLogger>()
+                .AddSingleton<IXmlProcessor, XmlProcessor>()
+                .AddSingleton<ICoreCommunicator, CoreCommunicator>()
+                .AddSingleton<IB2BCommunicator, B2BCommunicator>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

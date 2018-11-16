@@ -10,8 +10,8 @@ namespace eMandates.Merchant.Website.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly CoreCommunicator coreCommunicator;
-        private readonly B2BCommunicator b2bCommunicator;
+        private readonly ICoreCommunicator coreCommunicator;
+        private readonly IB2BCommunicator b2bCommunicator;
 
         private readonly List<ProductViewModel> products = new List<ProductViewModel>(new[]
         {
@@ -21,7 +21,7 @@ namespace eMandates.Merchant.Website.Controllers
             new ProductViewModel { Id = "4", Price = 20, Name = "Product 4" },
         });
 
-        public ProductsController(CoreCommunicator coreCommunicator, B2BCommunicator b2bCommunicator)
+        public ProductsController(ICoreCommunicator coreCommunicator, IB2BCommunicator b2bCommunicator)
         {
             this.coreCommunicator = coreCommunicator;
             this.b2bCommunicator = b2bCommunicator;

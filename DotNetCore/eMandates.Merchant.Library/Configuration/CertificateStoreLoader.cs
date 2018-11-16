@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace eMandates.Merchant.Library.Configuration
 {
-    internal class CertificateStoreLoader : ICertificateLoader
+    public class CertificateStoreLoader : ICertificateLoader
     {
         private readonly ConcurrentDictionary<string, X509Certificate2> _certificates = new ConcurrentDictionary<string, X509Certificate2>();
 

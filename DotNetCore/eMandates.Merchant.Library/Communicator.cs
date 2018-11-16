@@ -12,7 +12,7 @@ namespace eMandates.Merchant.Library
     /// <summary>
     /// Communicator class, to be used for sending messages where LocalInstrumentationCode = CORE
     /// </summary>
-    public class CoreCommunicator
+    public class CoreCommunicator : ICoreCommunicator
     {
         /// <summary>
         /// Configuration instance used with this CoreCommunicator
@@ -38,17 +38,6 @@ namespace eMandates.Merchant.Library
         /// LocalInstrumentCode used by the current instance (can be CORE or B2B)
         /// </summary>
         protected internal Instrumentation LocalInstrumentCode { get; set; }
-
-        /// <summary>
-        /// Constructs a new Communicator, initializes the Configuration and sets LocalInstrumentCode = CORE
-        /// </summary>
-        public CoreCommunicator(
-            IOptions<Configuration.Configuration> configurationOptions,
-            IXmlLogger xmlLogger,
-            IXmlProcessor xmlProcessor,
-            ILogger<CoreCommunicator> logger) : this(configurationOptions.Value, xmlLogger, xmlProcessor, logger)
-        {
-        }
 
         /// <summary>
         /// Constructs a new Communication by specifying the Configuration
@@ -297,21 +286,6 @@ namespace eMandates.Merchant.Library
     public class B2BCommunicator : CoreCommunicator, IB2BCommunicator
     {
         private readonly ILogger<B2BCommunicator> _logger;
-
-        /// <summary>
-        /// Default constructor, does initialization and sets LocalInstrumentCode to B2B
-        /// </summary>
-        public B2BCommunicator(
-            IOptions<Configuration.Configuration> configurationOptions,
-            IXmlLogger xmlLogger,
-            IXmlProcessor xmlProcessor,
-            ILogger<B2BCommunicator> logger,
-            ILogger<CoreCommunicator> coreCommunicatorLogger
-            ) :
-            base(configurationOptions, xmlLogger, xmlProcessor, coreCommunicatorLogger)
-        {
-            LocalInstrumentCode = Instrumentation.B2B;
-        }
 
         /// <summary>
         /// Initializes the B2BCommunication by specifying a Configuration
